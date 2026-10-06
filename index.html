@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tetiana Prysiazhniuk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+
+@font-face{
+  font-family:'The Youngest';
+  src: url('fonts/TheYoungest.woff2') format('woff2'),
+       url('fonts/TheYoungest.woff')  format('woff');
+  font-weight:400;
+  font-display:swap;
+}
+
+:root{
+  --bg:      #f6f6f6;
+  --plum:    #4d263e;
+  --plum-55: rgba(77, 38, 62, 0.55);
+  --gap: 38px;
+  --max: 1020px;
+}
+
+*{ margin:0; padding:0; box-sizing:border-box; }
+
+html{
+  scroll-behavior:smooth;
+  scroll-padding-top:112px; /* keeps headings clear of the sticky header */
+}
+
+body{
+  background:var(--bg);
+  color:var(--plum);
+  font-family:'Work Sans', sans-serif;
+}
+
+.wrap{
+  max-width:var(--max);
+  margin:0 auto;
+  padding:0 24px;
+}
+
+/* ---------- Header ---------- */
+header{
+  position:sticky;
+  top:0;
+  z-index:10;
+  background:var(--bg);
+  padding:34px 0 26px;
+}
+
+.name{
+  font-family:'The Youngest', 'EB Garamond', Georgia, serif;
+  font-weight:400;
+  font-size:clamp(2rem, 4.4vw, 2.9rem);
+  text-align:center;
+  letter-spacing:0.01em;
+}
+
+nav{
+  margin-top:14px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:34px;
+  flex-wrap:wrap;
+}
+
+nav a{
+  font-size:0.78rem;
+  font-weight:400;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--plum);
+  text-decoration:none;
+  padding-bottom:2px;
+  border-bottom:1px solid transparent;
+  transition:border-color .18s ease;
+}
+
+nav a:hover,
+nav a:focus-visible{ border-bottom-color:var(--plum); }
+
+nav .sep{
+  color:var(--plum-55);
+  font-size:0.8rem;
+  user-select:none;
+}
+
+/* ---------- Section titles ---------- */
+h2{
+  font-family:'Work Sans', sans-serif;
+  font-weight:700;
+  font-size:clamp(1.5rem, 3.2vw, 2.1rem);
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+  text-align:center;
+  padding:30px 0 28px;   /* evened up with the header spacing */
+}
+
+section + section h2{ padding-top:64px; } /* a little more air between blocks */
+
+/* ---------- Image grid ---------- */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:var(--gap);
+}
+
+.tile{
+  display:block;
+  aspect-ratio:1 / 1.17;
+  background:var(--plum);
+  overflow:hidden;
+  position:relative;
+  text-decoration:none;
+}
+
+.tile img,
+.tile video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+/* full-width tile — spans all columns, wide/short shape */
+.tile.wide{
+  grid-column:1 / -1;
+  aspect-ratio:2.4 / 1;
+}
+
+.tile span{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--bg);
+  font-size:0.75rem;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  opacity:0.55;
+}
+
+
+/* perfectly square tile */
+.tile.square{
+  aspect-ratio:1 / 1;
+}
+
+/* medium-wide tile — spans 2 of the 3 columns, narrower than .wide */
+.tile.wide-2{
+  grid-column:span 2;
+  aspect-ratio:2 / 1;
+}
+
+.section-sub{
+  text-align:center;
+  font-size:0.8rem;
+  letter-spacing:0.06em;
+  color:var(--plum-55);
+  margin-top:-16px;
+  padding-bottom:36px;
+}
+
+.wide-pair{
+  grid-column:1 / -1;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:var(--gap);
+}
+
+.wide-pair .tile{
+  aspect-ratio:1.3 / 1;
+}
+
+/* ---------- Contact ---------- */
+#contact{ padding-bottom:110px; }
+
+.contact-body{
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:22px;
+  font-size:0.82rem;
+  letter-spacing:0.13em;
+  text-transform:uppercase;
+  line-height:1.7;
+}
+
+.contact-body a{
+  color:var(--plum);
+  text-decoration:none;
+  border-bottom:1px solid transparent;
+  transition:border-color .18s ease;
+}
+
+.contact-body a:hover,
+.contact-body a:focus-visible{ border-bottom-color:var(--plum); }
+
+.contact-body address{ font-style:normal; max-width:30ch; }
+
+/* ---------- Responsive ---------- */
+@media (max-width:760px){
+  :root{ --gap:22px; }
+  .grid{ grid-template-columns:repeat(2, 1fr); }
+  nav{ gap:18px; }
+  html{ scroll-padding-top:150px; }
+}
+
+@media (max-width:460px){
+  .grid{ grid-template-columns:1fr; }
+  nav .sep{ display:none; }
+
+
+  .wide-pair{ grid-template-columns:1fr; }
+}
+
+@media (prefers-reduced-motion:reduce){
+  html{ scroll-behavior:auto; }
+}
+
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <h1 class="name">Tetiana Prysiazhniuk</h1>
+    <nav>
+      <a href="#digital-art">Digital art</a>
+      <span class="sep">|</span>
+      <a href="#graphic-design">Graphic design</a>
+      <span class="sep">|</span>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section id="digital-art">
+    <div class="wrap">
+      <h2>Digital art</h2>
+      <div class="grid">
+        <a class="tile" href="#"><img src="image1.PNG" alt="Title"></a>
+        <a class="tile" href="#"><img src="img2 (1).PNG" alt="Title"></a>
+        <a class="tile" href="#"><img src="img2 (2).PNG" alt="Title"></a>
+        <a class="tile" href="#"><img src="img2 (3).PNG" alt="Title"></a>
+        <a class="tile" href="#"><img src="img2 (4).PNG" alt="Title"></a>
+        <a class="tile" href="#"><img src="img2 (5).PNG" alt="Title"></a>
+        <a class="tile" href="#"><video src="vidh.mp4" autoplay muted loop playsinline></video></a>
+        <a class="tile" href="#"><img src="img2 (7).PNG" alt="Title"></a>
+        <a class="tile" href="#"><video src="img2 (1).MOV" autoplay muted loop playsinline></video></a>
+        <a class="tile wide" href="#"><img src="img2 (6).PNG" alt="Title"></a>
+        <a class="tile wide" href="#"><video src="Scene1(3).mp4" autoplay muted loop playsinline></video></a>
+      </div>
+    </div>
+  </section>
+
+  <section id="graphic-design">
+  <div class="wrap">
+    <h2>Graphic design for VNTU</h2>
+    <p class="section-sub">Posters made for Vinnytsia National Technical University</p>
+    <div class="grid">
+      <a class="tile square" href="#"><img src="IMG_4133.JPG" alt="Title"></a>
+      <a class="tile square" href="#"><img src="IMG_4134.JPG" alt="Title"></a>
+      <a class="tile square" href="#"><img src="IMG_4136.JPG" alt="Title"></a>
+      <a class="tile" href="#"><img src="IMG_4140.JPG" alt="Title"></a>
+      <a class="tile" href="#"><img src="IMG_4137.JPG" alt="Title"></a>
+      <a class="tile" href="#"><img src="photo_5452077467922274215_y.jpg" alt="Title"></a>
+      
+      <div class="wide-pair">
+        <a class="tile" href="#"><img src="IMG_4138.JPG" alt="Title"></a>
+        <a class="tile" href="#"><img src="IMG_4139.JPG" alt="Title"></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <section id="contact">
+    <div class="wrap">
+      <h2>Contact</h2>
+      <div class="contact-body">
+        <a href="mailto:baconbootyy@gmail.com">baconbootyy@gmail.com</a>
+        <a href="https://www.instagram.com/diomgis?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener">Instagram</a>
+        <a href="tel:+380634713325">+380634713325</a>
+        <address>38 Andriia Pervozvannoho st.<br>Vinnytsia</address>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+</body>
+</html>
